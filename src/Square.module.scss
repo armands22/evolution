@@ -1,0 +1,51 @@
+.cell {
+  cursor: pointer;
+  margin: 0px;
+  border: 2px solid;
+  border-color: #eee #999 #999 #eee;
+  background-color: #ccc;
+  padding: 0px;
+  vertical-align: middle;
+  text-align: center;
+  height: 25px;
+  width: 25px;
+  &:hover{
+    background: red;
+  }
+
+  &.sq0{
+    background-color: #bbb;
+    border-width: 1px;
+    border-color: #999;
+    padding: 1px;
+    cursor: default;
+  }
+}
+
+.sq1{
+  color: #33c;
+}
+
+.sq2{
+  color: #060;
+}
+
+.sq3{
+  color: #c00;
+}
+
+.gameover {
+  color: #f00;
+}
+
+.mine {
+  position: relative;
+  svg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: auto;
+  }
+}

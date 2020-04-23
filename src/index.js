@@ -1,17 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import "bootstrap/dist/css/bootstrap.css";
+import { createStore } from 'redux'
+import { Provider } from 'react-redux';
+import reducers from './reducers';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+import Start from "./Start";
+
+const store = createStore(reducers);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <Router>
+      <Switch>
+        <Route path="/game/:id" exact component={(props) => <App {...props} />} />
+        <Route component={Start} />
+      </Switch>
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
