@@ -6,6 +6,7 @@ export const GET_HELP_IN_PROGRESS = 'GET_HELP_IN_PROGRESS'
 export const GET_HELP_SUCCESSFUL = 'GET_HELP_SUCCESSFUL'
 export const RELOAD_MAP_IN_PROGRESS = 'RELOAD_MAP_IN_PROGRESS'
 export const RELOAD_MAP_SUCCESSFUL = 'RELOAD_MAP_SUCCESSFUL'
+export const RELOAD_MAP_SUCCESSFUL2 = 'RELOAD_MAP_SUCCESSFUL2'
 
 export const connectFn = (typeName) => {
   return  {
@@ -13,9 +14,14 @@ export const connectFn = (typeName) => {
   }
 }
 
-export const gameInstructionsFn = (actionType, data) => {
-  return {
+export const gameInstructionsFn = (actionType, data) => (dispatch, getState) => { 
+  dispatch({
     type: actionType,
     data: data
-  }
+  });
+  if(actionType === 'RELOAD_MAP_SUCCESSFUL')
+  dispatch({
+    type: 'RELOAD_MAP_SUCCESSFUL2',
+    data: data
+  });
 }

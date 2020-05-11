@@ -34,6 +34,17 @@
   color: #c00;
 }
 
+.sq5{
+  color: #c00;
+  background: green;
+}
+
+.sq6{
+  color: #000;
+  background: pink;
+}
+
+
 .gameover {
   color: #f00;
 }
@@ -48,4 +59,8 @@
     transform: translateY(-50%);
     margin: auto;
   }
+}
+
+.small {
+  font-size: 8px;
 }

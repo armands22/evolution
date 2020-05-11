@@ -9,8 +9,7 @@ class Table extends React.PureComponent {
   buildTable = () => {
     const { table, socket } = this.props
     return table.map((tableLine, index) => {
-      const cells = tableLine.split('')
-      return <div key={index} className="d-block">{cells.map((cell, idx) => {
+      return <div key={index} className="d-block">{tableLine.map((cell, idx) => {
         return <Square key={idx} socket={socket} cell={cell} coordX={idx} coordY={index} />
       })}</div>
     })

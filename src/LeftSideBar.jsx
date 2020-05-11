@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faInfoCircle, faPowerOff, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle, faPowerOff, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 import { connectFn, gameInstructionsFn } from './actions/game'
 import Spinner from './Spinner'
 import { connect } from 'react-redux';
@@ -30,7 +30,7 @@ class LeftSideBar extends React.PureComponent {
   }
 
   render() {
-    const { gameId, help, map } = this.props
+    const { gameId, help } = this.props
     return (
       <div className="card" >
         <div className="card-header">
@@ -49,6 +49,17 @@ class LeftSideBar extends React.PureComponent {
             <br />
             <code className="text-info">Press button to get game instructions</code><br />
             {help.data && this.displayHelp()}
+          </li>
+          <li key="map" className="list-group-item">
+            <button
+              className="btn btn-outline-info"
+              onClick={() => this.send('map', 'RELOAD_MAP_IN_PROGRESS')}>
+              {help.fetch && <Spinner size="sm" color="text-info" />}
+              {(help.fetch === null || help.fetchSuccessful) && <FontAwesomeIcon className="mr-1" icon={faQuestionCircle} />}
+              Map
+            </button>
+            <br />
+            <code className="text-info">Press button to show map</code><br />
           </li>
           <li key="stop" className="list-group-item">
             <button

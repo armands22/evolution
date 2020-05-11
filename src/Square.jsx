@@ -19,22 +19,25 @@ class Square extends React.PureComponent {
   }
 
   openCordinates = (e) => {
-    const { socket, coordX, coordY } = this.props
-    socket.send(`open ${coordX} ${coordY}`)
-    socket.send(`map`)
+    const { socket, coordX, coordY, cell } = this.props
+    if(cell !== 'M'){
+      socket.send(`open ${coordX} ${coordY}`)
+      socket.send(`map`)
+    }
   }
 
   showValue = (cell) => {
-    if(cell === '□'){
-      return 
+    const { coordX, coordY } = this.props
+    if (cell === '□') {
+      return <span className={classnames(styles["small"])}>{coordX}, {coordY}</span>
     } else {
       return cell
-    } 
+    }
   }
 
   render() {
     const { cell } = this.props;
-    const numbers = ['0', '1', '2', '3', '□'];
+    const numbers = ['0', '1', '2', '3', '□', 'M', 'F'];
     const { mine } = this.state;
     let className = null;
     if (numbers.includes(cell)) {
@@ -44,9 +47,9 @@ class Square extends React.PureComponent {
     }
     return <div
       className={styles["cell"]}
-      onContextMenu={(e)=> this.rightClick(e)}
+      onContextMenu={(e) => this.rightClick(e)}
       onClick={(e) => this.openCordinates(e)}
-      className={classnames("d-inline-block", styles["cell"], styles[className], { [styles.mine]: mine})}>{mine ? <FontAwesomeIcon icon={faBahai} /> : this.showValue(cell)}</div>
+      className={classnames("d-inline-block", styles["cell"], styles[className], { [styles.mine]: mine })}>{mine ? <FontAwesomeIcon icon={faBahai} /> : this.showValue(cell)}</div>
   }
 }
 
