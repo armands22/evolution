@@ -155,10 +155,10 @@ class App extends React.PureComponent {
       return <Spinner size="lg" />
     } else if (connectionSuccessful) {
       return <>
-        <div className="col-1">
+        <div className="col-3">
           <LeftSideBar gameId={id} websocket={this.state.socket} />
         </div>
-        <div className="col-11 d-flex flex-column">
+        <div className="col-9 d-flex flex-column">
           <GameNav />
           <Table table={tables[table]} socket={socket} toggled={toggled}/>
         </div>
